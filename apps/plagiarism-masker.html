@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Plagiarism Masker - The Keystone</title>
+    
+    <style>
+        /* Licenses */
+        .licenses-box {
+            border: 1px outset black;
+            padding: 0 1em;
+        }
+        
+        .license {
+            border: 1px outset black;
+            padding: 0 1em;
+        }
+    </style>
+    
+    <script>
+    function mainScript() {
+        var input = document.getElementById("text").value;
+        var output = "";
+        if (input !== null && input !== undefined && input !== "") {
+            output = input.replace(/e/g, "\u0435"); //e
+            output = output.replace(/a/g, "\u0430"); //a
+            output = output.replace(/o/g, "\u043E"); //o
+            document.getElementById("text").value = output;
+            document.getElementById("progress").style = "display:block;color:green";
+            document.getElementById("progress").innerHTML = "Done";
+        }
+        else {
+            document.getElementById("progress").style = "display:block;color:red";
+            document.getElementById("progress").innerHTML = "Error: No text was entered";
+        }
+    }
+    function detectMobile() {
+        var isMobile = false; //initiate as false
+        // device detection
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            isMobile = true;
+        }
+        if (isMobile && screen.width < 700) {
+            document.getElementById("text").cols = 40;
+            document.getElementById("text").rows = 20;
+        }
+    }
+    </script>
+</head>
+<body onload="detectMobile()">
+    <a href="../index.php">Home</a>
+    <h1>Plagiarism Masker</h1>
+    <p>This web app attempts to mask any plagiarism attempts in your paper. This app works by automatically replacing Latin characters with identical Cyrillic ones. No guarentees are made by this app. Plagiarism may still be detected, depending on the software used. Plagiarism is a serious problem in the academic world and the sole intention of this app is a proof-of-concept. Please do not use actually attempt to use this app in an essay or other academic paper.</p>
+    <noscript><p style="color:red;font-style:italic">JavaScript is required for this script to function</p></noscript>
+    <textarea autofocus placeholder="Enter some text here..." cols="90" rows="10" id="text"></textarea>
+    <button onclick="mainScript()">Mask Plagiarism</button>
+    <p id="progress" style="display:none"></p>
+    
+    <!-- Licenses -->
+    <div class="licenses-box">
+        <h3>Licensing</h3>
+        <div class="license">
+            <details style="padding: 1em 0">
+                <summary><img src="/no-copyright.png" alt="Copyright logo with diagonal line through the middle" style="height:1em" /> This page is licensed under the following license:</summary>
+                <div style="padding: 0 0 0 1em;">
+                    <!-- Indent all lines -->
+                    <p>This is free and unencumbered software released into the public domain.</p>
+                    <p>Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.</p>
+                    <p>In jurisdictions that recognize copyright laws, the author or authors of this software dedicate any and all copyright interest in the software to the public domain. We make this dedication for the benefit of the public at large and to the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in perpetuity of all present and future rights to this software under copyright law.</p>
+                    <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+                    <p>For more information, please refer to &lt;http://unlicense.org/&gt;</p>
+                </div>
+            </details>
+        </div>
+        <div class="license">
+            <p><img src="/no-copyright.png" alt="Copyright logo with diagonal line through the middle" style="height:1em" /> This page is dedicated to the public domain under the <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank">CC0 1.0 Public Domain Dedication</a>. To the extent allowed by applicable law, the person using associating CC0 with this work hereby waives all copyright and related or neighboring rights to this work.</p>
+        </div>
+        <p><em>You may select the license of your choice.</em></p>
+    </div>
+</body>
